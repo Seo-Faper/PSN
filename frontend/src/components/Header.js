@@ -100,14 +100,14 @@ function Header() {
                             <Form.Control
                                 type="password"
                             />
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>이메일</Form.Label>
                             <Form.Control
                                 type="email"
                                 placeholder="name@example.com"
                                 autoFocus
                             />
                         </Form.Group>
-                        <Form.Group
+                        {/* <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlTextarea1"
                         >
@@ -118,7 +118,7 @@ function Header() {
                                 autoFocus
 
                             />
-                        </Form.Group>
+                        </Form.Group> */}
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

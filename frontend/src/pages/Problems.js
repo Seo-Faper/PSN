@@ -26,7 +26,6 @@ export default function Problem() {
                             <th>#</th>
                             <th>stat</th>
                             <th>Name</th>
-                            <th>Tag</th>
                             <th>Author</th>
                             <th>Solved</th>
                         </tr>
@@ -36,7 +35,6 @@ export default function Problem() {
                             <td>1</td>
                             <td>-</td>
                             <td>동아리 입단 테스트 #1</td>
-                            <td>수학 , 구현 , 그리디</td>
                             <td>@faper</td>
                             <td>0</td>
                         </tr>
@@ -44,7 +42,6 @@ export default function Problem() {
                             <td>2</td>
                             <td>-</td>
                             <td>동아리 입단 테스트 #2</td>
-                            <td>mics, 넌센스</td>
                             <td>@faper</td>
                             <td>0</td>
                         </tr>
@@ -52,7 +49,6 @@ export default function Problem() {
                             <td>3</td>
                             <td>-</td>
                             <td>통기레쓰 우주 해병의 모험</td>
-                            <td>DFS</td>
                             <td>@faper</td>
                             <td>0</td>
                         </tr>
@@ -60,7 +56,6 @@ export default function Problem() {
                             <td>4</td>
                             <td>-</td>
                             <td>수혁이의 대선</td>
-                            <td>네트워크</td>
                             <td>@faper</td>
                             <td>0</td>
                         </tr>
@@ -68,7 +63,6 @@ export default function Problem() {
                             <td>5</td>
                             <td>-</td>
                             <td>하늘에서 떨어지는 1, 2, ... L+1 개의 별 </td>
-                            <td>그리디</td>
                             <td>@faper</td>
                             <td>0</td>
                         </tr>
