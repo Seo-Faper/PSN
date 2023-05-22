@@ -13,4 +13,28 @@
   transform: translateY(-0.125em);
 }
 
+#problem {
+  text-shadow: 0.125em 0 0 hsl(234, 74%, 18%);
+  text-shadow: 0em 0.125em 0 #526D82;
+  font-weight: bold;
+  color: #27374D;
+  transform: translateY(-0.125em);
+}
+
+#rank {
+  text-shadow: 0.125em 0 0 hsl(234, 74%, 18%);
+  text-shadow: 0em 0.125em 0 #B0A4A4;
+  font-weight: bold;
+  color: #643A6B;
+  transform: translateY(-0.125em);
+}
+
+#hof {
+  text-shadow: 0.125em 0 0 hsl(234, 74%, 18%);
+  text-shadow: 0em 0.125em 0 #F79327;
+  font-weight: bold;
+  color: #B70404;
+  transform: translateY(-0.125em);
+}
+
 main {}

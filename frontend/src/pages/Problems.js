@@ -6,8 +6,16 @@ import Container from '@mui/material/Container';
 import Header from '../components/Header';
 import StickyFooter from '../components/StickyFooter';
 import Table from 'react-bootstrap/Table';
+import { createTheme, ThemeProvider } from '@mui/material';
+
 
 export default function Problem() {
+    const theme = createTheme({
+        typography: {
+            fontFamily: "'Galmuri9', sans-serif;",
+        }
+
+    });
     return (
         <Box
             sx={{
@@ -19,7 +27,12 @@ export default function Problem() {
             <CssBaseline />
             <Header></Header>
 
-            <Container component="main" sx={{ mt: 5 }} maxWidth="md">
+            <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
+                <ThemeProvider theme={theme}>
+                    <Typography variant='h3' id="problem">Problem Set</Typography>
+                    <Typography variant='h5'>다양한 문제를 풀어 보아요.</Typography>
+                </ThemeProvider>
+                <CssBaseline><br></br></CssBaseline>
                 <Table striped bordered hover size="sm" >
                     <thead>
                         <tr>
