@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -7,9 +7,14 @@ import Header from '../components/Header';
 import StickyFooter from '../components/StickyFooter';
 import Table from 'react-bootstrap/Table';
 import { createTheme, ThemeProvider } from '@mui/material';
-
-
+import problemList from '../res/data.json'
+import { Link } from 'react-router-dom';
 export default function Problem() {
+    const [dataList, setDataList] = useState([]);
+    useEffect(() => {
+        setDataList(problemList.problem_list);
+    }, [])
+    console.log(problemList);
     const theme = createTheme({
         typography: {
             fontFamily: "'Galmuri9', sans-serif;",
@@ -37,49 +42,29 @@ export default function Problem() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>stat</th>
                             <th>Name</th>
                             <th>Author</th>
                             <th>Solved</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>-</td>
-                            <td>동아리 입단 테스트 #1</td>
-                            <td>@faper</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>-</td>
-                            <td>동아리 입단 테스트 #2</td>
-                            <td>@faper</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>-</td>
-                            <td>통기레쓰 우주 해병의 모험</td>
-                            <td>@faper</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>-</td>
-                            <td>수혁이의 대선</td>
-                            <td>@faper</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>-</td>
-                            <td>하늘에서 떨어지는 1, 2, ... L+1 개의 별 </td>
-                            <td>@faper</td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
+                    {
+                        dataList ? dataList.map((item, index) => {
+                            return (
+                                <tbody>
+
+                                    <td>{item.no}</td>
+                                    <td>
+                                        <Link to={`/problem/${item.no}`}>{item.title}</Link>
+                                    </td>
+                                    <td>
+                                        <Link to={`/users/${item.author}`}>{item.author}</Link>
+                                    </td>
+                                    <td>{item.solved}</td>
+                                </tbody>
+                            )
+                        }) : ''
+                    }
+
                 </Table>
             </Container>
             <StickyFooter />

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Flag from './pages/Flag';
 import Hof from './pages/Hof';
 import './App.css';
+import ProblemView from './pages/ProblemView';
 
 
 
@@ -13,7 +14,8 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/problem" element={<Problem />} />
+      <Route path='/problem' element={<Problem />}></Route>
+      <Route path='/problem/:no' element={<ProblemView />} />
       <Route path="/rank" element={<Rank />} />
       <Route path="/flag" element={<Flag />} />
       <Route path="/hof" element={<Hof />} />
