@@ -2,18 +2,58 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 function Header() {
     const [show0, setShow0] = useState(false);
+    const [LoginState, setLoginState] = useState({ username: "", password: "" });
     const [show1, setShow1] = useState(false);
+    const [userAuth, setUserAuth] = useState("");
 
-    const handleClose0 = () => {
+    const fetchLogin = (id, pw) => {
+        let status = 0;
+        fetch("/api/v1/users/login", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: id,
+                password: pw,
+            }),
+        })
+            .then((response) => response.json())
+            .then((result) => result.status == 200 ? setUserAuth(result.result.token) : setUserAuth(""));
 
-        setShow0(false);
+        console.log(userAuth);
+
     };
+    const handleClose0 = () => {
+        let L_username = LoginState.username;
+        let L_password = LoginState.password;
+        if (L_username && L_password.length) {
+            fetchLogin(L_username, L_password);
+            if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
+                //   alert("로그인 성공");
+                setShow0(false);
+            }
+        } else {
+            setShow0(false);
+        }
+
+
+
+    };
+    useEffect(() => {
+        console.log(userAuth);
+        if (userAuth.length != 0) {
+            localStorage.setItem('authTokens', userAuth);
+            setShow0(false);
+        }
+
+    }, [userAuth]);
     const handleShow0 = () => setShow0(true);
 
 
@@ -44,9 +84,7 @@ function Header() {
                         </Nav>
                         <Nav>
                             <Nav.Link onClick={handleShow0}>Enter</Nav.Link>
-                            <Nav.Link onClick={handleShow1}>
-                                Register
-                            </Nav.Link>
+                            <Nav.Link onClick={handleShow1}> Register </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -57,25 +95,30 @@ function Header() {
                     <Modal.Title>Enter</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form >
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>username</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="username"
                                 autoFocus
-                                required
+                                value={LoginState.username}
+                                onChange={e => setLoginState({ ...LoginState, username: e.target.value })}
+                                autoComplete='off'
                             />
                             <Form.Label>password</Form.Label>
                             <Form.Control
                                 type="password"
+                                value={LoginState.password}
+                                onChange={(e) => setLoginState({ ...LoginState, password: e.target.value })}
                             />
                         </Form.Group>
 
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose0}>
+
+                    <Button variant="primary" onClick={handleClose0} >
                         Enter
                     </Button>
                 </Modal.Footer>
@@ -93,6 +136,7 @@ function Header() {
                                 type="text"
                                 placeholder="username"
                                 autoFocus
+                                autoComplete='off'
                                 required
                             />
                             <Form.Label>비밀번호</Form.Label>
@@ -106,8 +150,8 @@ function Header() {
                             <Form.Label>이메일</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="name@example.com"
-
+                                placeholder="your@email.com"
+                                autoComplete='off'
                             />
                         </Form.Group>
                         {/* <Form.Group

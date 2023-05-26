@@ -47,23 +47,25 @@ export default function Problem() {
                             <th>Solved</th>
                         </tr>
                     </thead>
-                    {
-                        dataList ? dataList.map((item, index) => {
-                            return (
-                                <tbody>
-                                    <td>{item.no}</td>
-                                    <td>
-                                        <Link to={`/problem/${item.no}`}>{item.title}</Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/users/${item.author}`}>{item.author}</Link>
-                                    </td>
-                                    <td>{item.solved}</td>
-                                </tbody>
-                            )
-                        }) : ''
-                    }
+                    <tbody>
+                        {
+                            dataList ? dataList.map((item, index) => {
+                                return (
+                                    <tr>
+                                        <td>{item.no}</td>
+                                        <td>
+                                            <Link to={`/problem/${item.no}`}>{item.title}</Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/users/${item.author}`}>{item.author}</Link>
+                                        </td>
+                                        <td>{item.solved}</td>
+                                    </tr>
 
+                                )
+                            }) : ''
+                        }
+                    </tbody>
                 </Table>
             </Container>
             <StickyFooter />
