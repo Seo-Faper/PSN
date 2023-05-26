@@ -22,15 +22,7 @@ export default function Problem() {
 
     });
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
-        >
-            <CssBaseline />
-            <Header></Header>
+        <>
 
             <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
                 <ThemeProvider theme={theme}>
@@ -43,7 +35,7 @@ export default function Problem() {
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Author</th>
+                            <th><center>Author</center></th>
                             <th>Solved</th>
                         </tr>
                     </thead>
@@ -51,13 +43,13 @@ export default function Problem() {
                         {
                             dataList ? dataList.map((item, index) => {
                                 return (
-                                    <tr>
+                                    <tr className='problemTable'>
                                         <td>{item.no}</td>
-                                        <td>
+                                        <td >
                                             <Link to={`/problem/${item.no}`}>{item.title}</Link>
                                         </td>
-                                        <td>
-                                            <Link to={`/users/${item.author}`}>{item.author}</Link>
+                                        <td className='author'>
+                                            <center><Link to={`/users/${item.author}`}>{item.author}</Link></center>
                                         </td>
                                         <td>{item.solved}</td>
                                     </tr>
@@ -69,6 +61,6 @@ export default function Problem() {
                 </Table>
             </Container>
             <StickyFooter />
-        </Box>
+        </>
     );
 }

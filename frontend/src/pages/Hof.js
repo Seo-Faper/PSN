@@ -19,16 +19,7 @@ export default function Hof() {
 
     });
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
-        >
-            <CssBaseline />
-            <Header></Header>
-
+        <>
             <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
                 <ThemeProvider theme={theme}>
                     <Typography variant='h3' id="hof">Hell Of Fame</Typography>
@@ -47,6 +38,6 @@ export default function Hof() {
                 </Card>
             </Container>
             <StickyFooter />
-        </Box>
+        </>
     );
 }

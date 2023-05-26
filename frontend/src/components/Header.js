@@ -9,11 +9,13 @@ import Modal from 'react-bootstrap/Modal';
 function Header() {
     const [show0, setShow0] = useState(false);
     const [LoginState, setLoginState] = useState({ username: "", password: "" });
-    const [show1, setShow1] = useState(false);
-    const [userAuth, setUserAuth] = useState("");
 
+    const [show1, setShow1] = useState(false);
+
+    const [userAuth, setUserAuth] = useState("");
+    const [isLogin, setIsLogin] = useState(false);
     const fetchLogin = (id, pw) => {
-        let status = 0;
+
         fetch("/api/v1/users/login", {
             method: "POST",
             headers: {
@@ -37,6 +39,7 @@ function Header() {
             fetchLogin(L_username, L_password);
             if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
                 //   alert("로그인 성공");
+                setIsLogin(true);
                 setShow0(false);
             }
         } else {
@@ -48,12 +51,23 @@ function Header() {
     };
     useEffect(() => {
         console.log(userAuth);
+
         if (userAuth.length != 0) {
             localStorage.setItem('authTokens', userAuth);
             setShow0(false);
         }
 
+
     }, [userAuth]);
+    useEffect(() => {
+
+        if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(false);
+        }
+        console.log(isLogin);
+    }, [isLogin]);
     const handleShow0 = () => setShow0(true);
 
 

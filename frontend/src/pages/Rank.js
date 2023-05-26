@@ -17,16 +17,7 @@ export default function Rank() {
 
     });
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
-        >
-            <CssBaseline />
-            <Header></Header>
-
+        <>
             <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
                 <ThemeProvider theme={theme}>
                     <Typography variant='h3' id="rank">Rank</Typography>
@@ -64,6 +55,6 @@ export default function Rank() {
                 </Table>
             </Container>
             <StickyFooter />
-        </Box>
+        </>
     );
 }

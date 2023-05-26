@@ -12,19 +12,11 @@ export default function ProblemView(props) {
     const { id } = useParams();
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
-        >
-            <CssBaseline />
-            <Header></Header>
+        <>
             <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
                 <h1> {props.match.no}번 문제</h1>
             </Container>
             <StickyFooter />
-        </Box>
+        </>
     );
 }

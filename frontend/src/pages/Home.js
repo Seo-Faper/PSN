@@ -17,15 +17,7 @@ const theme = createTheme({
 export default function Home() {
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
-        >
-            <CssBaseline />
-            <Header></Header>
+        <>
             <ThemeProvider theme={theme}>
                 <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
 
@@ -41,6 +33,6 @@ export default function Home() {
                 </Container>
             </ThemeProvider>
             <StickyFooter />
-        </Box>
+        </>
     );
 }
