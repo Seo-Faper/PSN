@@ -21,7 +21,6 @@ export default function ProblemView(props) {
         >
             <CssBaseline />
             <Header></Header>
-
             <Container component="main" sx={{ mt: 5 }} maxWidth="lg">
                 <h1> {props.match.no}번 문제</h1>
             </Container>

@@ -10,7 +10,10 @@ function Header() {
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
 
-    const handleClose0 = () => setShow0(false);
+    const handleClose0 = () => {
+
+        setShow0(false);
+    };
     const handleShow0 = () => setShow0(true);
 
 
@@ -85,7 +88,7 @@ function Header() {
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>username</Form.Label>
+                            <Form.Label>아이디</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="username"
@@ -104,7 +107,7 @@ function Header() {
                             <Form.Control
                                 type="email"
                                 placeholder="name@example.com"
-                                autoFocus
+
                             />
                         </Form.Group>
                         {/* <Form.Group

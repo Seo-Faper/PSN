@@ -37,4 +37,13 @@
   transform: translateY(-0.125em);
 }
 
+.problemTable a {
+  text-decoration: none;
+  color: black;
+}
+
+.problemTable .author {
+  font-weight: bold;
+}
+
 main {}

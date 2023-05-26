@@ -51,7 +51,6 @@ export default function Problem() {
                         dataList ? dataList.map((item, index) => {
                             return (
                                 <tbody>
-
                                     <td>{item.no}</td>
                                     <td>
                                         <Link to={`/problem/${item.no}`}>{item.title}</Link>
