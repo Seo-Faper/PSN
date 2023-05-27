@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 function Header() {
+
     const [show0, setShow0] = useState(false);
     const [LoginState, setLoginState] = useState({ username: "", password: "" });
 
@@ -29,7 +30,7 @@ function Header() {
             .then((response) => response.json())
             .then((result) => result.status == 200 ? setUserAuth(result.result.token) : setUserAuth(""));
 
-        console.log(userAuth);
+        //console.log(userAuth);
 
     };
     const handleClose0 = () => {
@@ -38,7 +39,7 @@ function Header() {
         if (L_username && L_password.length) {
             fetchLogin(L_username, L_password);
             if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
-                //   alert("로그인 성공");
+
                 setIsLogin(true);
                 setShow0(false);
             }
@@ -50,9 +51,10 @@ function Header() {
 
     };
     useEffect(() => {
-        console.log(userAuth);
+        //console.log(userAuth);
 
         if (userAuth.length != 0) {
+
             localStorage.setItem('authTokens', userAuth);
             setShow0(false);
         }
@@ -66,7 +68,7 @@ function Header() {
         } else {
             setIsLogin(false);
         }
-        console.log(isLogin);
+        //console.log(isLogin);
     }, [isLogin]);
     const handleShow0 = () => setShow0(true);
 
