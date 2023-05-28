@@ -10,29 +10,31 @@ import ProblemView from './pages/ProblemView';
 import Header from './components/Header';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-        }}
-      >
-        <CssBaseline />
-        <Header></Header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/problem' element={<Problem />}></Route>
-          <Route path='/problem/:no' element={<ProblemView />} />
-          <Route path="/rank" element={<Rank />} />
-          <Route path="/flag" element={<Flag />} />
-          <Route path="/hof" element={<Hof />} />
-        </Routes>
-      </Box >
+      <RecoilRoot>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          <CssBaseline />
+          <Header></Header>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='/problem' element={<Problem />}></Route>
+            <Route path='/problem/:no' element={<ProblemView />} />
+            <Route path="/rank" element={<Rank />} />
+            <Route path="/flag" element={<Flag />} />
+            <Route path="/hof" element={<Hof />} />
+          </Routes>
+        </Box >
+      </RecoilRoot>
     </>
   );
 };

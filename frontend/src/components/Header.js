@@ -6,17 +6,20 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useRecoilState } from 'recoil';
+import { LoginState } from '../atom/LoginState';
+import { LoginName } from '../atom/LoginName';
+
 function Header() {
 
     const [show0, setShow0] = useState(false);
-    const [LoginState, setLoginState] = useState({ username: "", password: "" });
-
+    const [Login, setLogin] = useState({ username: "", password: "" });
+    const [auth, setAuth] = useState("");
+    const [msg, setMsg] = useState("");
     const [show1, setShow1] = useState(false);
-
-    const [userAuth, setUserAuth] = useState("");
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginState);
+    const [User, setUser] = useRecoilState(LoginName);
     const fetchLogin = (id, pw) => {
-
         fetch("/api/v1/users/login", {
             method: "POST",
             headers: {
@@ -28,48 +31,43 @@ function Header() {
             }),
         })
             .then((response) => response.json())
-            .then((result) => result.status == 200 ? setUserAuth(result.result.token) : setUserAuth(""));
-
-        //console.log(userAuth);
+            .then((result) => result.status == 200 ? setAuth(result.result.token + "LOGINID=" + id) : setAuth(""));
 
     };
     const handleClose0 = () => {
-        let L_username = LoginState.username;
-        let L_password = LoginState.password;
-        if (L_username && L_password.length) {
+        let L_username = Login.username;
+        let L_password = Login.password;
+        if (L_username && L_password) {
             fetchLogin(L_username, L_password);
-            if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
-
-                setIsLogin(true);
+            if (auth) {
                 setShow0(false);
+            } else {
+                setMsg(" - 로그인 실패");
             }
         } else {
             setShow0(false);
         }
 
 
-
     };
+
     useEffect(() => {
-        //console.log(userAuth);
-
-        if (userAuth.length != 0) {
-
-            localStorage.setItem('authTokens', userAuth);
-            setShow0(false);
+        if (auth) {
+            localStorage.setItem('token', auth);
+            if (localStorage.getItem('token')) {
+                setIsLoggedIn(true);
+                setUser(localStorage.getItem('token').split("LOGINID=")[1]);
+                setShow0(false);
+            }
         }
-
-
-    }, [userAuth]);
-    useEffect(() => {
-
-        if (userAuth.length != 0 && userAuth === localStorage.getItem('authTokens')) {
-            setIsLogin(true);
-        } else {
-            setIsLogin(false);
-        }
-        //console.log(isLogin);
-    }, [isLogin]);
+    }, [auth]);
+    const logoutHandler = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userInfo');
+        setIsLoggedIn(false);
+        setUser("");
+        window.location.reload();
+    };
     const handleShow0 = () => setShow0(true);
 
 
@@ -84,6 +82,7 @@ function Header() {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/problem">Problem Set</Nav.Link>
+                            {isLoggedIn ? <Nav.Link href="/flag">Auth</Nav.Link> : ""}
                             <Nav.Link href="/rank">Ranking</Nav.Link>
                             <Nav.Link href="/hof">Hell of Fame</Nav.Link>
                             <NavDropdown title="Projects" id="collasible-nav-dropdown">
@@ -99,8 +98,8 @@ function Header() {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link onClick={handleShow0}>Enter</Nav.Link>
-                            <Nav.Link onClick={handleShow1}> Register </Nav.Link>
+                            {isLoggedIn ? <Nav.Link > {User} </Nav.Link> : <Nav.Link onClick={handleShow0}>Enter</Nav.Link>}
+                            {isLoggedIn ? <Nav.Link onClick={logoutHandler}> logout </Nav.Link> : <Nav.Link onClick={handleShow1}> Register </Nav.Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -108,7 +107,7 @@ function Header() {
 
             <Modal show={show0} onHide={handleClose0}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Enter</Modal.Title>
+                    <Modal.Title>Enter {msg}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form >
@@ -118,22 +117,21 @@ function Header() {
                                 type="text"
                                 placeholder="username"
                                 autoFocus
-                                value={LoginState.username}
-                                onChange={e => setLoginState({ ...LoginState, username: e.target.value })}
+                                value={Login.username}
+                                onChange={e => setLogin({ ...Login, username: e.target.value })}
                                 autoComplete='off'
                             />
                             <Form.Label>password</Form.Label>
                             <Form.Control
                                 type="password"
-                                value={LoginState.password}
-                                onChange={(e) => setLoginState({ ...LoginState, password: e.target.value })}
+                                value={Login.password}
+                                onChange={(e) => setLogin({ ...Login, password: e.target.value })}
                             />
                         </Form.Group>
 
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-
                     <Button variant="primary" onClick={handleClose0} >
                         Enter
                     </Button>

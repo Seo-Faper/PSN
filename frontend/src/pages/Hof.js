@@ -36,6 +36,7 @@ export default function Hof() {
                         <Button variant="primary">자세히 보기</Button>
                     </Card.Body>
                 </Card>
+
             </Container>
             <StickyFooter />
         </>
