@@ -99,7 +99,7 @@ function Header() {
                         </Nav>
                         <Nav>
                             {isLoggedIn ? <Nav.Link > {User} </Nav.Link> : <Nav.Link onClick={handleShow0}>Enter</Nav.Link>}
-                            {isLoggedIn ? <Nav.Link onClick={logoutHandler}> logout </Nav.Link> : <Nav.Link onClick={handleShow1}> Register </Nav.Link>}
+                            {isLoggedIn ? <Nav.Link onClick={logoutHandler}> Logout </Nav.Link> : <Nav.Link onClick={handleShow1}> Register </Nav.Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
