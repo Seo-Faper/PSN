@@ -85,17 +85,7 @@ function Header() {
                             {isLoggedIn ? <Nav.Link href="/flag">Auth</Nav.Link> : ""}
                             <Nav.Link href="/rank">Ranking</Nav.Link>
                             <Nav.Link href="/hof">Hell of Fame</Nav.Link>
-                            <NavDropdown title="Projects" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Vect0r Hotel 2th</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Cq tier list
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="https://seo-faper.github.io/HashBr0wn/" target="_blank" rel="noreferrer noopener" >get Hash</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">
-                                    Berlekamp project
-                                </NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link href="/mcmap">vect0r hotel</Nav.Link>
                         </Nav>
                         <Nav>
                             {isLoggedIn ? <Nav.Link > {User} </Nav.Link> : <Nav.Link onClick={handleShow0}>Enter</Nav.Link>}

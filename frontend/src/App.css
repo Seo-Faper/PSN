@@ -48,4 +48,14 @@
   font-weight: bold;
 }
 
-main {}
+main {
+  padding-top: 50px;
+}
+
+nav {
+  position: fixed !important;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+}

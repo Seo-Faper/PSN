@@ -7,9 +7,11 @@ import Header from '../components/Header';
 import StickyFooter from '../components/StickyFooter';
 import Table from 'react-bootstrap/Table';
 import { createTheme, ThemeProvider } from '@mui/material';
-
+import { useState, useEffect } from 'react';
 
 export default function Rank() {
+    const [data, setData] = useState([]);
+    
     const theme = createTheme({
         typography: {
             fontFamily: "'Galmuri9', sans-serif;",
@@ -28,7 +30,6 @@ export default function Rank() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>stat</th>
                             <th>Name</th>
                             <th>Comment</th>
                             <th>Pwn</th>
@@ -37,14 +38,14 @@ export default function Rank() {
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>-</td>
+
                             <td>익명의 오소리</td>
                             <td>ㅎㅎ</td>
                             <td>1200</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>-</td>
+
                             <td>whdcks_</td>
                             <td>안녕하세요.</td>
                             <td>1123</td>
